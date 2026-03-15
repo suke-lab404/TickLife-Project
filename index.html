@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ja">
+    <head>
+        <!-- Basics -->
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <!-- Site information -->
+        <title>TickLife</title>
+        <meta name="description" content="TickLife" />
+
+        <!-- Site panel -->
+        <meta property="og:site_name" content="TickLife" />
+        <meta property="og:description" content="カウントダウンします。" />
+        <meta property="og:type" content="website" />
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="https://unpkg.com/sanitize.css" />
+        <link rel="stylesheet" href="./style.css" />
+
+        <!-- JavaScript -->
+        <script type="module" src="js/main.js" defer></script>
+
+        <!-- Font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <div class="main-container">
+            <header class="header">
+                <a href="#" class="logo">TickLife</a>
+                <div class="dropdown" id="dropdown">
+                    <button class="dropdown-button" id="dropdown-button">
+                        <span class="dropdown-button-text">テストテキスト</span>
+                        <svg dropdown-iconxmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-down dropdown-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 9l6 6l6 -6" /></svg>
+                    </button>
+                    <div class="menu-container" id="menu-container">
+                        <div class="menu-controller-container">
+                            <button class="menu-add-button menu-controller-button-design" id="menu-add-button">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-clock-plus"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20.984 12.535a9 9 0 1 0 -8.468 8.45" /><path d="M16 19h6" /><path d="M19 16v6" /><path d="M12 7v5l3 3" /></svg>
+                                <span class="menu-add-button-text">新規作成</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <button class="detail-dropdown-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-dots"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M11 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M18 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /></svg>
+                </button>
+            </header>
+        </div>
+        <div class="count-container">
+            <span class="count-display">12345</span>
+        </div>
+        <div class="overlay" id="overlay"></div>
+        <div class="dialog add-container" id="add-dialog">
+            <p>カウントダウンを新規作成する</p>
+        </div>
+    </body>
+</html>

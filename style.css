@@ -1,0 +1,182 @@
+html{
+    height: 100%;
+}
+body{
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+/* ヘッダー部分 */
+.header {
+    display: flex;
+    align-items: center;
+    height: 60px;
+    width: 100%;
+    position: relative;
+}
+.logo {
+    text-decoration: none;
+    color: black;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-right: auto;
+    user-select: none;
+}
+.detail-dropdown-button {
+    all: unset;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 8px;
+    margin-left: auto;
+    margin-right: 20px;
+    border-radius: 10000px;
+}
+.detail-dropdown-button:hover{
+    background-color: rgb(247, 247, 247);
+}
+/* メニュードロップダウン */
+.dropdown{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.dropdown-button {
+    all: unset;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    height: 24px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 100px;
+}
+.dropdown-button.hover {
+    background-color: rgb(247, 247, 247);
+}
+.dropdown-button-text {
+    font-family: "Noto Sans JP", sans-serif;
+    margin-right: 5px;
+    color: rgb(30, 30, 30);
+}
+.dropdown-icon{
+    position: relative;
+    top: 0px;
+    color: rgb(75, 75, 75);
+    transition: transform 0.3s ease-in-out;
+    transform-origin: center;
+}
+.dropdown.open .dropdown-icon{
+    transform: rotate(180deg);
+}
+/* メニュー部分 */
+.menu-container{
+    position: absolute;
+    width: 500px;
+    border-radius: 24px;
+    top: calc(100% + 10px);
+    left: 50%;
+    padding: 30px;
+    border: 1px solid #e3e3e3;
+    box-shadow: 0px 5px 15px 0px rgba(172, 172, 172, 0.35);
+
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px);
+    pointer-events: none;
+
+    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+.menu-container.open{
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
+}
+/* メニューコントローラー */
+.menu-controller-container{
+    display: flex;
+    align-items: center;
+    padding-bottom: 10px;
+    height: 30px;
+    border-bottom: 1px solid #e3e3e3;
+}
+.menu-controller-button-design{
+    all: unset;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 5px;
+    border-radius: 10000px;
+    border: 1px solid #e3e3e3;
+}
+.menu-controller-button-design:hover{
+    background-color: rgb(247, 247, 247);
+}
+.menu-add-button-text{
+    margin-left: 8px;
+    font-size: 14px;
+}
+
+/* 真ん中のカウント部分 */
+.count-container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+.count-display{
+    font-size: 100px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+}
+
+/* ダイアログ　*/
+.overlay {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    z-index: 100;
+    transition: opacity 0.2s ease-in-out;
+}
+.dialog {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: 101;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.overlay.visible{
+    opacity: 1;
+    pointer-events: auto;
+}
+.dialog.open{
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* 新規作成ダイアログ */
+.add-container{
+    background-color: rgb(255, 255, 255);
+    border-radius: 24px;
+    border: 1px solid #e3e3e3;
+    padding: 30px;
+    width: 600px;
+}
