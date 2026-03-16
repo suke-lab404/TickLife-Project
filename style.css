@@ -7,6 +7,12 @@ body{
     width: 100%;
 }
 
+/* メイン */
+.main-container{
+    width: 100%;
+    height: 100%;
+}
+
 /* ヘッダー部分 */
 .header {
     display: flex;
@@ -39,6 +45,12 @@ body{
 .detail-dropdown-button:hover{
     background-color: rgb(247, 247, 247);
 }
+/* フッダー仮 */
+.footer-kari{
+    position: absolute;
+    bottom: 0px;
+}
+
 /* メニュードロップダウン */
 .dropdown{
     position: absolute;
