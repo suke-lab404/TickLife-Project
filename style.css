@@ -101,9 +101,8 @@ body{
 .menu-controller-container{
     display: flex;
     align-items: center;
-    padding-bottom: 10px;
     height: 30px;
-    border-bottom: 1px solid #e3e3e3;
+    margin-bottom: 15px;
 }
 .menu-controller-button-design{
     all: unset;
@@ -114,7 +113,6 @@ body{
     padding-bottom: 6px;
     padding-left: 10px;
     padding-right: 10px;
-    margin-bottom: 5px;
     border-radius: 10000px;
     border: 1px solid #e3e3e3;
 }
@@ -170,6 +168,27 @@ body{
 .dialog.open{
     opacity: 1;
     pointer-events: auto;
+}
+.dialog-header-content {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #e3e3e3;
+}
+.dialog-header {
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+}
+.dialog-close-button {
+    all: unset;
+    display: flex;
+    padding: 8px;
+    cursor: pointer;
+    margin-left: auto;
+    border-radius: 10000px;
+}
+.dialog-close-button:hover {
+    background-color: rgb(247, 247, 247);
 }
 
 /* 新規作成ダイアログ */

@@ -71,6 +71,25 @@ function openAddDialog(){
     if (isOpenAddDialog === true) {
         return;
     }
+    isOpenAddDialog = true;
+
     overlay.classList.add("visible");
     addDialog.classList.add("open");
 }
+
+function closeAddDialog(){
+    if (isOpenAddDialog === false) {
+        return;
+    }
+    isOpenAddDialog = false;
+
+    overlay.classList.remove("visible");
+    addDialog.classList.remove("open");
+}
+
+// 新規作成、閉じるプログラム
+const addDialogCloseButton = document.getElementById("add-dialog-close-button");
+
+addDialogCloseButton.addEventListener("click", e => {
+    closeAddDialog();
+})
