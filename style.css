@@ -1,5 +1,6 @@
 html{
     height: 100%;
+    font-family: "Noto Sans JP", sans-serif;
 }
 body{
     position: relative;
@@ -73,7 +74,6 @@ body{
     background-color: rgb(247, 247, 247);
 }
 .dropdown-button-text {
-    font-family: "Noto Sans JP", sans-serif;
     margin-right: 5px;
     color: rgb(30, 30, 30);
 }
@@ -187,7 +187,6 @@ body{
     border-bottom: 1px solid #e3e3e3;
 }
 .dialog-header {
-    font-family: "Noto Sans JP", sans-serif;
     font-weight: 600;
     font-size: 20px;
 }
@@ -209,5 +208,23 @@ body{
     border-radius: 24px;
     border: 1px solid #e3e3e3;
     padding: 30px;
-    width: 600px;
+    width: 800px;
+}
+.add-main-content{
+    /* Nothing */
+    /* ん？空のルールセットを使用しないでください？知るかそんなもん。 */
+    /* 多分後々使うんや！！！ */
+}
+.add-main-content-header {
+    font-weight: 400;
+    font-size: 18px;
+}
+.add-choose-content {
+    padding: 20px;
+    border-radius: 16px;
+    border: 1px solid #e3e3e3;
+}
+.add-choose-content>p{
+    margin: 0;
+    margin-bottom: 10px;
 }
