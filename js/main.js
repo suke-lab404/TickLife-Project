@@ -53,43 +53,43 @@ function closeMenu(){
 
 
 // 新規作成ダイアログ
-const menuAddButton = document.getElementById("menu-add-button");
+const menuCreateButton = document.getElementById("menu-create-button");
 const overlay = document.getElementById("overlay");
-const addDialog = document.getElementById("add-dialog");
+const createModal = document.getElementById("create-modal");
 
-let isOpenAddDialog = false
+let isOpenCreateModal = false
 
-menuAddButton.addEventListener("click", e => {
-    if (isOpenAddDialog === true) {
+menuCreateButton.addEventListener("click", e => {
+    if (isOpenCreateModal === true) {
         return;
     }
     closeMenu();
-    openAddDialog();
+    openCreateModal();
 })
 
-function openAddDialog(){
-    if (isOpenAddDialog === true) {
+function openCreateModal(){
+    if (isOpenCreateModal === true) {
         return;
     }
-    isOpenAddDialog = true;
+    isOpenCreateModal = true;
 
     overlay.classList.add("visible");
-    addDialog.classList.add("open");
+    createModal.classList.add("open");
 }
 
-function closeAddDialog(){
-    if (isOpenAddDialog === false) {
+function closeCreateModal(){
+    if (isOpenCreateModal === false) {
         return;
     }
-    isOpenAddDialog = false;
+    isOpenCreateModal = false;
 
     overlay.classList.remove("visible");
-    addDialog.classList.remove("open");
+    createModal.classList.remove("open");
 }
 
 // 新規作成、閉じるプログラム
-const addDialogCloseButton = document.getElementById("add-dialog-close-button");
+const createModalCloseButton = document.getElementById("create-modal-close-button");
 
-addDialogCloseButton.addEventListener("click", e => {
-    closeAddDialog();
+createModalCloseButton.addEventListener("click", e => {
+    closeCreateModal();
 })

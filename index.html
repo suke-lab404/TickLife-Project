@@ -51,9 +51,9 @@
                     </button>
                     <div class="menu-container" id="menu-container">
                         <div class="menu-controller-container">
-                            <button class="menu-add-button menu-controller-button-design" id="menu-add-button">
+                            <button class="menu-create-button menu-controller-button-design" id="menu-create-button">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-clock-plus"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20.984 12.535a9 9 0 1 0 -8.468 8.45" /><path d="M16 19h6" /><path d="M19 16v6" /><path d="M12 7v5l3 3" /></svg>
-                                <span class="menu-add-button-text">新規作成</span>
+                                <span class="menu-create-button-text">新規作成</span>
                             </button>
                         </div>
                     </div>
@@ -67,20 +67,12 @@
             <span class="count-display">12345</span>
         </div>
         <div class="overlay" id="overlay"></div>
-        <div class="dialog add-container" id="add-dialog">
-            <div class="dialog-header-content">
-                <h1 class="dialog-header">新規作成</h1>
-                <button class="dialog-close-button" id="add-dialog-close-button">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-x dialog-close-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
+        <div class="modal create-container" id="create-modal">
+            <div class="modal-header-content">
+                <h1 class="modal-header">新規作成</h1>
+                <button class="modal-close-button" id="create-modal-close-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-x modal-close-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
                 </button>
-            </div>
-            <div class="add-main-content">
-                <h2 class="add-main-content-header">カウントダウンを新規作成する</h2>
-                <div class="add-choose-content">
-                    <p>日付と時間の選択</p>
-                    <input type="date" name="add-date">
-                    <input type="time" name="add-time">
-                </div>
             </div>
         </div>
         <div class="footer-kari">

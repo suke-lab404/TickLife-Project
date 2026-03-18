@@ -131,7 +131,7 @@ body{
 .menu-controller-button-design:hover{
     background-color: rgb(247, 247, 247);
 }
-.menu-add-button-text{
+.menu-create-button-text{
     margin-left: 8px;
     font-size: 14px;
 }
@@ -162,7 +162,7 @@ body{
     z-index: 100;
     transition: opacity 0.2s ease-in-out;
 }
-.dialog {
+.modal {
     position: absolute;
     opacity: 0;
     pointer-events: none;
@@ -177,20 +177,20 @@ body{
     opacity: 1;
     pointer-events: auto;
 }
-.dialog.open{
+.modal.open{
     opacity: 1;
     pointer-events: auto;
 }
-.dialog-header-content {
+.modal-header-content {
     display: flex;
     align-items: center;
     border-bottom: 1px solid #e3e3e3;
 }
-.dialog-header {
+.modal-header {
     font-weight: 600;
     font-size: 20px;
 }
-.dialog-close-button {
+.modal-close-button {
     all: unset;
     display: flex;
     padding: 8px;
@@ -198,33 +198,15 @@ body{
     margin-left: auto;
     border-radius: 10000px;
 }
-.dialog-close-button:hover {
+.modal-close-button:hover {
     background-color: rgb(247, 247, 247);
 }
 
 /* 新規作成ダイアログ */
-.add-container{
+.create-container{
     background-color: rgb(255, 255, 255);
     border-radius: 24px;
     border: 1px solid #e3e3e3;
     padding: 30px;
     width: 800px;
-}
-.add-main-content{
-    /* Nothing */
-    /* ん？空のルールセットを使用しないでください？知るかそんなもん。 */
-    /* 多分後々使うんや！！！ */
-}
-.add-main-content-header {
-    font-weight: 400;
-    font-size: 18px;
-}
-.add-choose-content {
-    padding: 20px;
-    border-radius: 16px;
-    border: 1px solid #e3e3e3;
-}
-.add-choose-content>p{
-    margin: 0;
-    margin-bottom: 10px;
 }
