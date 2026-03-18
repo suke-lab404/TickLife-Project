@@ -1,5 +1,20 @@
 import * as ui from "./ui.js";
 
+// ハックシュン！！の管理
+
+function handleHash() {
+    if (location.hash === "#settings") {
+        console.log("設定画面を開く")
+    } else if (location.hash === "#create") {
+        openCreateModal();
+    } else if (location.hash === "") {
+        console.log("何も開かれていない")
+    }
+}
+
+window.addEventListener("hashchange", handleHash);
+window.addEventListener("load", handleHash)
+
 // ヘッダーらへんの処理
 // 要素の取得
 const dropdown = document.getElementById("dropdown");
@@ -51,45 +66,17 @@ function closeMenu(){
     }
 }
 
-
-// 新規作成ダイアログ
+// 新規作成
+// 新規作成画面を開くボタンの処理
 const menuCreateButton = document.getElementById("menu-create-button");
-const overlay = document.getElementById("overlay");
-const createModal = document.getElementById("create-modal");
-
-let isOpenCreateModal = false
 
 menuCreateButton.addEventListener("click", e => {
-    if (isOpenCreateModal === true) {
-        return;
-    }
-    closeMenu();
-    openCreateModal();
+    location.hash = "create";
 })
 
-function openCreateModal(){
-    if (isOpenCreateModal === true) {
-        return;
-    }
-    isOpenCreateModal = true;
+// 新規作成画面
 
-    overlay.classList.add("visible");
-    createModal.classList.add("open");
+
+function openCreateModal() {
+
 }
-
-function closeCreateModal(){
-    if (isOpenCreateModal === false) {
-        return;
-    }
-    isOpenCreateModal = false;
-
-    overlay.classList.remove("visible");
-    createModal.classList.remove("open");
-}
-
-// 新規作成、閉じるプログラム
-const createModalCloseButton = document.getElementById("create-modal-close-button");
-
-createModalCloseButton.addEventListener("click", e => {
-    closeCreateModal();
-})
