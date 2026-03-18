@@ -23,11 +23,9 @@
         <script type="module" src="js/main.js" defer></script>
 
         <!-- Font -->
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&display=swap"
-            rel="stylesheet"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
 
         <!-- Flatpickr -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
@@ -83,9 +81,18 @@
                 </button>
             </div>
             <div class="create-main-content">
+                <h2>カウントダウンの名称</h2>
+                <div class="create-main-name-box">
+                    <input type="text" id="mainNameInput" placeholder="名称を入力…" class="create-main-text-input">
+                    <span class="create-main-text-border"></span>
+                </div>
                 <h2>日時を指定</h2>
-                <div class="create-main-date-wrapper">
-                    <input type="date" id="flatpickr" class="create-main-date-input">
+                <div class="create-main-date-container">
+                    <span>SELECT DATE AND TIME</span>
+                    <div class="create-main-date-box" id="create-main-date-box">
+                        <input type="text" id="dateInput" class="create-main-date-input" placeholder="yyyy/mm/dd hh:mm">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-calendar-week"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12" /><path d="M16 3v4" /><path d="M8 3v4" /><path d="M4 11h16" /><path d="M7 14h.013" /><path d="M10.01 14h.005" /><path d="M13.01 14h.005" /><path d="M16.015 14h.005" /><path d="M13.015 17h.005" /><path d="M7.01 17h.005" /><path d="M10.01 17h.005" /></svg>
+                    </div>
                 </div>
             </div>
         </div>

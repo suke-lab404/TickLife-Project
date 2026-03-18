@@ -8,6 +8,21 @@ body{
     width: 100%;
 }
 
+:root {
+    /* ベース */
+    --color-base: #ffffff;
+    /* 細い線などに用いる */
+    --color-border: #e3e3e3;
+    /* 細い線のホバー時など */
+    --color-border-hover: #454545;
+    /* アイコンのホバー時など */
+    --color-sub: #f7f7f7;
+    /* 反対色 */
+    --color-complementary: #000000;
+    /* 淡い黒 */
+    --color-faint-complementary: #1e1e1e;
+}
+
 /* メイン */
 .main-container{
     width: 100%;
@@ -44,7 +59,7 @@ body{
     border-radius: 10000px;
 }
 .detail-dropdown-button:hover{
-    background-color: rgb(247, 247, 247);
+    background-color: var(--color-sub);
 }
 /* フッダー仮 */
 .footer-kari{
@@ -71,16 +86,16 @@ body{
     border-radius: 100px;
 }
 .dropdown-button.hover {
-    background-color: rgb(247, 247, 247);
+    background-color: var(--color-sub);
 }
 .dropdown-button-text {
     margin-right: 5px;
-    color: rgb(30, 30, 30);
+    color: var(--color-faint-complementary);
 }
 .dropdown-icon{
     position: relative;
     top: 0px;
-    color: rgb(75, 75, 75);
+    color: var(--color-faint-complementary);
     transition: transform 0.3s ease-in-out;
     transform-origin: center;
 }
@@ -95,7 +110,7 @@ body{
     top: calc(100% + 10px);
     left: 50%;
     padding: 30px;
-    border: 1px solid #e3e3e3;
+    border: 1px solid var(--color-border);
     box-shadow: 0px 5px 15px 0px rgba(172, 172, 172, 0.35);
 
     opacity: 0;
@@ -129,7 +144,7 @@ body{
     border: 1px solid #e3e3e3;
 }
 .menu-controller-button-design:hover{
-    background-color: rgb(247, 247, 247);
+    background-color: var(--color-sub)
 }
 .menu-create-button-text{
     margin-left: 8px;
@@ -174,7 +189,7 @@ body{
     top: 50%;
     transform: translateX(-50%) translateY(calc(-50% - 10px));
     background-color: white;
-    border: 1px solid #e3e3e3;
+    border: 1px solid var(--color-border);
     padding: 30px;
     border-radius: 24px;
     width: 650px;
@@ -193,8 +208,7 @@ body{
     display: flex;
     align-items: center;
     padding-bottom: 10px;
-    border-bottom: 1px solid #e3e3e3;
-    margin-bottom: 20px;
+    border-bottom: 1px solid var(--color-border);
 }
 
 .create-header>h1{
@@ -212,51 +226,92 @@ body{
     margin-left: auto;
 }
 .create-close-button:hover {
-    background-color: rgb(247, 247, 247);
+    background-color: var(--color-sub);
 }
 
 /* 時間指定シンプル */
 .create-main-content {
     width: 100%;
+    padding: 20px;
 }
 
-.create-main-content>h2 {
+.create-main-content h2 {
     margin: 0;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 500;
 }
 
-.create-main-date-wrapper {
+/* 名称の選択 */
+.create-main-name-box {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+    width: 80%;
+}
+.create-main-text-input {
     position: relative;
+    border: 0;
     padding: 5px;
-    /* border-bottom: 1px solid #e3e3e3;
-    transition: border-bottom 0.2s ease-in-out; */
+    font-size: 16px;
+    width: 100%;
+    outline: none;
 }
 
-.create-main-date-wrapper::after {
+.create-main-text-border {
+    display: block;
+    height: 1px;
+    width: 100%;
+    background-color: var(--color-border);
+    border-radius: 1000px;
+    transition: transform 0.2s, background-color 0.2s;
+    transform-origin: center bottom;
+}
+.create-main-text-input:hover + .create-main-text-border {
+    background-color: var(--color-border-hover);
+}
+.create-main-text-input:focus + .create-main-text-border {
+    background-color: var(--color-border-hover);
+    transform: scaleY(2);
+}
+
+/* 日付の選択　*/
+.create-main-date-container {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.create-main-date-container>span {
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: #848484;
+}
+.create-main-date-box {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    width: 80%;
+    position: relative;
+}
+.create-main-date-box::after {
     content: "";
     position: absolute;
-    bottom: 0;
     left: 0;
-    width: 100%;
+    bottom: 0;
     height: 1px;
-    background-color: #e3e3e3;
-    transition: background-color 0.2s ease-in-out, height 0.2s ease-in-out;
+    width: 100%;
+    background-color: var(--color-border);
+    transition: height .2s ease-in-out, background-color .2s ease-in-out;
     border-radius: 1000px;
 }
-.create-main-date-wrapper:focus-within::after {
-    background-color: #474747;
+.create-main-date-box:hover::after {
     height: 2px;
+    background-color: var(--color-border-hover);
 }
 
 .create-main-date-input {
-    font-family: "Montserrat", sans-serif;
-    font-size: 16px;
-    font-weight: 500;
     border: none;
+    pointer-events: none;
     width: 100%;
-}
-
-.create-main-date-wrapper:focus-within {
-    
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
 }

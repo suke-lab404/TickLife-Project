@@ -109,9 +109,14 @@ createCloseButton.addEventListener("click", e => {
     location.hash = "";
 })
 
-window.onload = function () {
-    flatpickr('#flatpickr', {
-        locale: "ja",
-        enableTime: true
-    });
-}
+// カレンダーを開くプログラム
+const createMainDateBox = document.getElementById("create-main-date-box");
+
+createMainDateBox.addEventListener("click", e => {
+    dateInput.open();
+})
+
+const dateInput = flatpickr('#dateInput', {
+    locale: "ja",
+    enableTime: true
+});
