@@ -9,6 +9,7 @@ function handleHash() {
         openCreateModal();
     } else if (location.hash === "") {
         console.log("何も開かれていない")
+        closeCreateModal();
     }
 }
 
@@ -71,12 +72,46 @@ function closeMenu(){
 const menuCreateButton = document.getElementById("menu-create-button");
 
 menuCreateButton.addEventListener("click", e => {
+    closeMenu();
     location.hash = "create";
 })
 
 // 新規作成画面
+const overlay = document.getElementById("overlay");
+const createModal = document.getElementById("create-modal");
+const createCloseButton = document.getElementById("create-close-button");
 
+let isOpenCreateModal = false;
 
 function openCreateModal() {
+    if (isOpenCreateModal){
+        return;
+    }
 
+    overlay.classList.add("visible");
+    createModal.classList.add("open");
+
+    isOpenCreateModal = true;
+}
+
+function closeCreateModal() {
+    if (!isOpenCreateModal) {
+        return;
+    }
+
+    overlay.classList.remove("visible");
+    createModal.classList.remove("open");
+
+    isOpenCreateModal = false;
+}
+
+createCloseButton.addEventListener("click", e => {
+    location.hash = "";
+})
+
+window.onload = function () {
+    flatpickr('#flatpickr', {
+        locale: "ja",
+        enableTime: true
+    });
 }

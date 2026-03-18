@@ -29,6 +29,11 @@
             href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+JP:wght@100..900&display=swap"
             rel="stylesheet"/>
 
+        <!-- Flatpickr -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>
+
         <!-- Google Analytics -->
         <!-- Google tag (gtag.js) -->
         <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-7FPMJ0FY93"></script>
@@ -68,6 +73,21 @@
         </div>
         <div class="footer-kari">
             <a href="./privacy/">プライバシーポリシー</a>
+        </div>
+        <div class="overlay" id="overlay"></div>
+        <div class="create-modal" id="create-modal">
+            <div class="create-header">
+                <h1>新規作成</h1>
+                <button class="create-close-button" id="create-close-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-x"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
+                </button>
+            </div>
+            <div class="create-main-content">
+                <h2>日時を指定</h2>
+                <div class="create-main-date-wrapper">
+                    <input type="date" id="flatpickr" class="create-main-date-input">
+                </div>
+            </div>
         </div>
     </body>
 </html>
