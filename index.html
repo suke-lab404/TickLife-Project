@@ -80,7 +80,11 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-x"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
                 </button>
             </div>
-            <div class="create-main-content">
+            <div class="create-loading-content" id="create-loading-content">
+                <span class="create-loading-text">Loading...</span>
+                <div class="circle-spin-2 create-loading-circle"></div>
+            </div>
+            <!-- <div class="create-main-content">
                 <h2>カウントダウンの名称</h2>
                 <div class="create-main-name-box">
                     <input type="text" id="mainNameInput" placeholder="名称を入力…" class="create-main-text-input">
@@ -92,6 +96,26 @@
                     <div class="create-main-date-box" id="create-main-date-box">
                         <input type="text" id="dateInput" class="create-main-date-input" placeholder="yyyy/mm/dd hh:mm">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-calendar-week"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12" /><path d="M16 3v4" /><path d="M8 3v4" /><path d="M4 11h16" /><path d="M7 14h.013" /><path d="M10.01 14h.005" /><path d="M13.01 14h.005" /><path d="M16.015 14h.005" /><path d="M13.015 17h.005" /><path d="M7.01 17h.005" /><path d="M10.01 17h.005" /></svg>
+                    </div>
+                </div>
+                <h2>単位を指定</h2>
+                <div class="create-main-units-container">
+                    <button class="create-main-units sec" id="sec-button">秒</button>
+                    <button class="create-main-units min" id="min-button">分</button>
+                    <button class="create-main-units hour" id="hour-button">時</button>
+                    <button class="create-main-units day" id="day-button">日</button>
+                    <button class="create-main-units week" id="week-button">週</button>
+                    <button class="create-main-units mon" id="mon-button">月</button>
+                    <button class="create-main-units year" id="year-button">年</button>
+                </div>
+            </div> -->
+            <div class="create-date-picker" id="create-date-picker">
+                <!-- ここにJavaScriptから要素が追加される -->
+                <div class="create-name create-element" id="create-name">
+                    <h2>カウントダウンの名称</h2>
+                    <div class="create-name-text-box">
+                        <input type="text" id="create-name-text" placeholder="名称を入力…" class="create-name-text">
+                        <span class="create-name-text-border"></span>
                     </div>
                 </div>
             </div>

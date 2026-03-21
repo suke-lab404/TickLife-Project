@@ -88,6 +88,7 @@ function openCreateModal() {
         return;
     }
 
+    ui.resetCreateModal();
     overlay.classList.add("visible");
     createModal.classList.add("open");
 
@@ -109,14 +110,17 @@ createCloseButton.addEventListener("click", e => {
     location.hash = "";
 })
 
+// 新規作成のプログラム
+
+
 // カレンダーを開くプログラム
-const createMainDateBox = document.getElementById("create-main-date-box");
+// const createMainDateBox = document.getElementById("create-main-date-box");
 
-createMainDateBox.addEventListener("click", e => {
-    dateInput.open();
-})
+// createMainDateBox.addEventListener("click", e => {
+//     dateInput.open();
+// })
 
-const dateInput = flatpickr('#dateInput', {
-    locale: "ja",
-    enableTime: true
-});
+// const dateInput = flatpickr('#dateInput', {
+//     locale: "ja",
+//     enableTime: true
+// });
