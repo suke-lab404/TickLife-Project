@@ -1,3 +1,9 @@
+/*
+没コードだらけのクソコードとなっています。
+ちゃんとしたプログラマーさんはいらないコードをしっかり消しましょうね。
+せっかく書いたコードへの未練が残ってしまってね、、、
+*/
+
 import * as ui from "./ui.js";
 
 // ハックシュン！！の管理
@@ -89,10 +95,15 @@ function openCreateModal() {
     }
 
     ui.resetCreateModal();
+    ui.showModalLoading();
     overlay.classList.add("visible");
     createModal.classList.add("open");
 
-    isOpenCreateModal = true;
+    setTimeout(() => {
+        createDefaultDateModal();
+        ui.hideModalLoading();
+        isOpenCreateModal = true;
+    }, 100);
 }
 
 function closeCreateModal() {
@@ -110,7 +121,38 @@ createCloseButton.addEventListener("click", e => {
     location.hash = "";
 })
 
+// 日付選択の部分の装飾
+
+function createDefaultDateModal() {
+    // フラグメントの設定
+    const fragment = document.createDocumentFragment();
+    // 要素の取得
+    const createDatePicker = document.getElementById("create-date-picker");
+    const createLoadingContent = document.getElementById("create-loading-content");
+    // インプットの一覧
+    const fields = [];
+
+    fields.push(ui.addNameTextBox(fragment));
+    
+
+    createDatePicker.appendChild(fragment);
+}
+
+
 // 新規作成のプログラム
+// flatpickrの設定
+// const createDateInputConfig = flatpickr("#create-date-input", {
+//     locale: "ja",
+//     enableTime: true
+// })
+
+// const createDateBox = document.getElementById("create-date-box");
+
+// createDateBox.addEventListener("click", e => {
+//     createDateInputConfig.open();
+// })
+
+
 
 
 // カレンダーを開くプログラム

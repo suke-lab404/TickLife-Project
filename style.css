@@ -359,10 +359,15 @@ body{
 }
 
 /* 時間選択 */
+/* 名称 */
 .create-date-picker {
     width: 100%;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
     gap: 10px;
+    max-height: 75vh;
+    overflow-y: auto;
 }
 .create-element>h2 {
     margin: 0;
@@ -397,6 +402,47 @@ body{
 .create-name-text:focus + .create-name-text-border {
     background-color: var(--color-border-hover);
     transform: scaleY(2);
+}
+
+.create-date-container {
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+.create-date-container>span {
+    color: var(--color-border-hover);
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+}
+.create-date-box {
+    width: 80%;
+    display: flex;
+    position: relative;
+}
+.create-date-input {
+    pointer-events: none;
+    outline: none;
+    border: none;
+    padding: 5px;
+    font-size: 16px;
+    font-family: "Inter", sans-serif;
+    width: 100%;
+}
+.create-date-border {
+    position: absolute;
+    height: 0.6px;
+    width: 100%;
+    background-color: var(--color-border);
+    bottom: 1px;
+}
+.create-date-border.hover {
+    background-color: var(--color-border-hover);
+}
+.create-date-border.focus {
+    background-color: var(--color-border-hover);
+    height: 1.2px;
 }
 
 /* One div loaders */
