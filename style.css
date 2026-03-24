@@ -405,6 +405,7 @@ body{
     transform: scaleY(2);
 }
 
+/* デイトタイム */
 .create-date-container {
     width: 100%;
     padding-top: 5px;
@@ -444,6 +445,34 @@ body{
 .create-date-border.focus {
     background-color: var(--color-border-hover);
     height: 1.2px;
+}
+
+/* 日付の選択 */
+.create-unit-selector {
+    display: flex;
+    gap: 10px;
+    padding: 5px;
+}
+.create-unit-button {
+    all: unset;
+    font-family: "Noto Sans JP", sans-serif;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 12px;
+    padding-right: 12px;
+    border-radius: 10000px;
+    border: 1px solid var(--color-border);
+    border-radius: 10000px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color .2s ease-in-out, color .2s ease-in-out;
+}
+.create-unit-button:hover {
+    background-color: var(--color-sub);
+}
+.create-unit-button.selected {
+    background-color: var(--color-complementary);
+    color: var(--color-base);
 }
 
 /* One div loaders */

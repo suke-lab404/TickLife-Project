@@ -135,5 +135,71 @@ export function addDateOption (fragment, option={
         type: "datetime",
         getValue: () => fp.selectedDates
     }
+}
 
+/**
+ * @param {DocumentFragment} fragment
+ * @param {HTMLDivElement} createDatePicker
+ */
+export function addUnitOption (fragment, option={
+    canEdit: true,
+    yrs: true,
+    mth: true,
+    wks: true,
+    day: true,
+    hrs: true,
+    min: true,
+    sec: true,
+    default: "",
+}) {
+    const elementContent = `
+    <div class="create-unit create-element">
+        <h2>表示する単位を選択</h2>
+        <div class="create-unit-selector">
+            <button class="create-unit-button yrs">年</button>
+            <button class="create-unit-button mth">月</button>
+            <button class="create-unit-button wks">週</button>
+            <button class="create-unit-button day">日</button>
+            <button class="create-unit-button hrs">時間</button>
+            <button class="create-unit-button min">分</button>
+            <button class="create-unit-button sec">秒</button>
+        </div>
+    </div>
+    `
+    /*
+    yrs -> 年
+    mth -> 月
+    wks -> 週
+    day -> 日
+    hrs -> 時間
+    min -> 分
+    sec -> 秒
+     */
+
+    const div = document.createElement("div");
+    div.innerHTML = elementContent;
+    fragment.appendChild(div);
+
+    let currentUnit = "";
+
+    // 要素の取得
+    const unitsBtn = div.querySelectorAll(".create-unit-button");
+    console.log(unitsBtn);
+    unitsBtn.forEach((btn) => {
+        btn.addEventListener("click", () => {
+            const unitType = btn.classList[1]
+            currentUnit = unitType
+
+            unitsBtn.forEach((btn2) => {
+                btn2.classList.remove("selected");
+            })
+
+            btn.classList.add("selected");
+        })
+    })
+
+    return {
+        type: "unit",
+        getValue: () => currentUnit
+    }
 }

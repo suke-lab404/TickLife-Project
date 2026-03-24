@@ -133,15 +133,8 @@ function createDefaultDateModal() {
     const fields = [];
 
     fields.push(ui.addNameTextBox(fragment));
-    fields.push(ui.addDateOption(fragment, {
-        default :{
-            year: 2030,
-            mon: 1,
-            day: 1,
-            hour: 12,
-            min: 0
-        }
-    }));
+    fields.push(ui.addDateOption(fragment));
+    fields.push(ui.addUnitOption(fragment));
 
     createDatePicker.appendChild(fragment);
 }
