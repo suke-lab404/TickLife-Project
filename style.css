@@ -386,6 +386,7 @@ body{
     font-size: 16px;
     width: 100%;
     outline: none;
+    font-family: "Noto Sans JP", sans-serif;
 }
 .create-name-text-border {
     display: block;
