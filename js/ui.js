@@ -186,9 +186,11 @@ export function addUnitOption (fragment, option={
     const unitsBtn = div.querySelectorAll(".create-unit-button");
     console.log(unitsBtn);
     unitsBtn.forEach((btn) => {
+
+        const unitType = btn.classList[1];
+
         btn.addEventListener("click", () => {
-            const unitType = btn.classList[1]
-            currentUnit = unitType
+            currentUnit = unitType;
 
             unitsBtn.forEach((btn2) => {
                 btn2.classList.remove("selected");
@@ -196,6 +198,30 @@ export function addUnitOption (fragment, option={
 
             btn.classList.add("selected");
         })
+
+        if (unitType === "yrs" && !option.yrs) {
+            btn.disabled = true;
+        }
+        if (unitType === "mth" && !option.mth) {
+            btn.disabled = true;
+        }
+        if (unitType === "wks" && !option.wks) {
+            btn.disabled = true;
+        }
+        if (unitType === "day" && !option.day) {
+            btn.disabled = true;
+        }
+        if (unitType === "hrs" && !option.hrs) {
+            btn.disabled = true;
+        }
+        if (unitType === "min" && !option.min) {
+            btn.disabled = true;
+        }
+        if (unitType === "sec" && !option.sec) {
+            btn.disabled = true;
+        }
+
+
     })
 
     return {

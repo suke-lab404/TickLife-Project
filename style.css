@@ -474,6 +474,11 @@ body{
     background-color: var(--color-complementary);
     color: var(--color-base);
 }
+.create-unit-button:disabled {
+    background-color: var(--color-border);
+    color: var(--color-base);
+    pointer-events: none;
+}
 
 /* One div loaders */
 .circle-spin-2 {
