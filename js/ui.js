@@ -29,6 +29,30 @@ export function hideModalLoading() {
  * @param {DocumentFragment} fragment
  * @param {HTMLDivElement} createDatePicker
  */
+export function addLabel (fragment, text) {
+    const elementContent = `
+    <div class="create-label create-element">
+        <p class="create-label-p"></p>
+    </div>
+    `
+
+    const div = document.createElement("div");
+    div.innerHTML = elementContent;
+    fragment.appendChild(div);
+
+    const paragrah = div.querySelector(".create-label-p");
+
+    paragrah.innerHTML = text;
+
+    return {
+        type: "label"
+    }
+}
+
+/**
+ * @param {DocumentFragment} fragment
+ * @param {HTMLDivElement} createDatePicker
+ */
 export function addNameTextBox (fragment, placeHolder="名称を入力…", option={
     canEdit: true,
     default: "",

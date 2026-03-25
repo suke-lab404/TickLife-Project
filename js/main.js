@@ -100,7 +100,7 @@ function openCreateModal() {
     createModal.classList.add("open");
 
     setTimeout(() => {
-        createDefaultDateModal();
+        // createDefaultDateModal();
         ui.hideModalLoading();
         isOpenCreateModal = true;
     }, 100);
@@ -132,6 +132,7 @@ function createDefaultDateModal() {
     // インプットの一覧
     const fields = [];
 
+    fields.push(ui.addLabel(fragment, "名称や日時を設定して、カウントダウンを作成しましょう。"))
     fields.push(ui.addNameTextBox(fragment));
     fields.push(ui.addDateOption(fragment));
     fields.push(ui.addUnitOption(fragment));

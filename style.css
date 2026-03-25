@@ -358,11 +358,25 @@ body{
     margin-bottom: auto;
 }
 
-/* 時間選択 */
+/* 時間選択モーダル */
+/* ラベル */
+.create-label {
+    padding-top: 16px;
+    padding-bottom: 16px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.create-label-p {
+    margin: 0;
+    color: var(--color-faint-complementary);
+    font-size: 16px;
+}
+
 /* 名称 */
 .create-date-picker {
     width: 100%;
     padding: 20px;
+    padding-bottom: 10px;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -462,7 +476,6 @@ body{
     padding-right: 12px;
     border-radius: 10000px;
     border: 1px solid var(--color-border);
-    border-radius: 10000px;
     font-size: 14px;
     cursor: pointer;
     transition: background-color .2s ease-in-out, color .2s ease-in-out;
@@ -478,6 +491,47 @@ body{
     background-color: var(--color-border);
     color: var(--color-base);
     pointer-events: none;
+}
+
+/* 送信 */
+.create-submit {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+}
+.create-submit-box {
+    padding-top: 10px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+.create-submit-button {
+    all: unset;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 12px;
+    padding-right: 12px;
+    border-radius: 10000px;
+    border: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    background-color: var(--color-complementary);
+    color: var(--color-base);
+    cursor: pointer;
+    margin-left: auto;
+}
+.create-submit-button>svg {
+    margin-right: 8px;
+    width: 22px;
+    height: 22px;
+}
+.create-submit-button>span {
+    font-size: 14px;
+}
+.create-submit-border {
+    height: 1px;
+    background-color: var(--color-border);
+    width: 100%;
 }
 
 /* One div loaders */
