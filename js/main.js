@@ -140,32 +140,3 @@ function createDefaultDateModal() {
 
     createDatePicker.appendChild(fragment);
 }
-
-
-// 新規作成のプログラム
-// flatpickrの設定
-// const createDateInputConfig = flatpickr("#create-date-input", {
-//     locale: "ja",
-//     enableTime: true
-// })
-
-// const createDateBox = document.getElementById("create-date-box");
-
-// createDateBox.addEventListener("click", e => {
-//     createDateInputConfig.open();
-// })
-
-
-
-
-// カレンダーを開くプログラム
-// const createMainDateBox = document.getElementById("create-main-date-box");
-
-// createMainDateBox.addEventListener("click", e => {
-//     dateInput.open();
-// })
-
-// const dateInput = flatpickr('#dateInput', {
-//     locale: "ja",
-//     enableTime: true
-// });
