@@ -193,6 +193,7 @@ body{
     padding: 30px;
     border-radius: 24px;
     width: 650px;
+    height: auto;
 
     pointer-events: none;
     opacity: 0;
@@ -529,9 +530,10 @@ body{
     font-size: 14px;
 }
 .create-submit-border {
-    height: 1px;
+    height: 2px;
     background-color: var(--color-border);
     width: 100%;
+    border-radius: 10000px;
 }
 
 /* One div loaders */

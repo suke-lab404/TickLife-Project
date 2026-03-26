@@ -10,8 +10,8 @@ export function resetCreateModal() {
     const createDatePicker = document.getElementById("create-date-picker");
     const createLoadingContent = document.getElementById("create-loading-content");
 
-    // createDatePicker.replaceChildren();
-    // createLoadingContent.classList.add("enable");
+    createDatePicker.replaceChildren();
+    createLoadingContent.classList.add("enable");
 
 }
 
@@ -116,7 +116,7 @@ export function addDateOption (fragment, option={
 }) {
     const elementContent = `
     <div class="create-date create-element" id="create-date">
-        <h2>日時を指定</h2>
+        <h2>終了の日時</h2>
         <div class="create-date-container">
             <span>SELECT DATE AND TIME</span>
             <div class="create-date-box">
@@ -178,7 +178,7 @@ export function addUnitOption (fragment, option={
 }) {
     const elementContent = `
     <div class="create-unit create-element">
-        <h2>表示する単位を選択</h2>
+        <h2>表示する単位</h2>
         <div class="create-unit-selector">
             <button class="create-unit-button yrs">年</button>
             <button class="create-unit-button mth">月</button>
@@ -251,5 +251,35 @@ export function addUnitOption (fragment, option={
     return {
         type: "unit",
         getValue: () => currentUnit
+    }
+}
+
+/**
+ * @param {DocumentFragment} fragment
+ * @param {HTMLDivElement} createDatePicker
+ */
+export function addSubmitButton (fragment) {
+    const elementContent = `
+    <div class="create-submit create-element">
+        <span class="create-submit-border"></span>
+        <div class="create-submit-box">
+            <button class="create-submit-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-clock-plus"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20.984 12.535a9 9 0 1 0 -8.468 8.45" /><path d="M16 19h6" /><path d="M19 16v6" /><path d="M12 7v5l3 3" /></svg>
+                <span>新規作成</span>
+            </button>
+        </div>
+    </div>
+    `;
+
+    const div = document.createElement("div");
+    div.innerHTML = elementContent;
+    fragment.appendChild(div);
+
+    // 要素の取得
+    const submitButton = div.querySelector(".create-submit-button");
+
+    return {
+        type: "submit",
+        btnElem: submitButton
     }
 }

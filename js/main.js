@@ -100,7 +100,7 @@ function openCreateModal() {
     createModal.classList.add("open");
 
     setTimeout(() => {
-        // createDefaultDateModal();
+        createDefaultDateModal();
         ui.hideModalLoading();
         isOpenCreateModal = true;
     }, 100);
@@ -136,6 +136,7 @@ function createDefaultDateModal() {
     fields.push(ui.addNameTextBox(fragment));
     fields.push(ui.addDateOption(fragment));
     fields.push(ui.addUnitOption(fragment));
+    fields.push(ui.addSubmitButton(fragment));
 
     createDatePicker.appendChild(fragment);
 }
