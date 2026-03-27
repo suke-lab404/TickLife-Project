@@ -6,7 +6,7 @@
 
 import * as ui from "./ui.js";
 
-// ハックシュン！！の管理
+// ハッシュの管理
 
 function handleHash() {
     if (location.hash === "#settings") {
@@ -122,7 +122,6 @@ createCloseButton.addEventListener("click", e => {
 })
 
 // 日付選択の部分の装飾
-
 function createDefaultDateModal() {
     // フラグメントの設定
     const fragment = document.createDocumentFragment();
@@ -132,11 +131,29 @@ function createDefaultDateModal() {
     // インプットの一覧
     const fields = [];
 
-    fields.push(ui.addLabel(fragment, "名称や日時を設定して、カウントダウンを作成しましょう。"))
+    fields.push(ui.addLabel(fragment, "名称や日時を設定して、カウントダウンを作成しましょう。"));
     fields.push(ui.addNameTextBox(fragment));
     fields.push(ui.addDateOption(fragment));
     fields.push(ui.addUnitOption(fragment));
     fields.push(ui.addSubmitButton(fragment));
 
     createDatePicker.appendChild(fragment);
+
+    /** @type {HTMLButtonElement} */
+    const submitButton = fields.find(element => element.type === "submit")?.btnElem;
+    console.log(submitButton)
+
+    submitButton.addEventListener("click", () => {
+        console.log("新規作成");
+        extractDataFromFields(fields);
+    })
+}
+
+function extractDataFromFields(fields) {
+    // データの取得
+    const countTitleObject = fields.find(item => item.type === "title");
+    const countDatetimeObject = fields.find(item => item.type === "datetime");
+    const countUnitsObject = fields.find(item => item.type === "unit");
+
+    console.log(`タイトル：${countTitleObject.getValue()}\n日時：${countDatetimeObject.getValue()}\n単位：${countUnitsObject.getValue()}`);
 }
