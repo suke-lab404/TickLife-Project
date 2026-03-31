@@ -26,6 +26,14 @@ export function hideModalLoading() {
 }
 
 /**
+ * @param {HTMLDivElement} elem
+ */
+function setElemDesc (elem, desc) {
+    elem.querySelector(".create-desc-elem");
+    console.log(`取得された要素：${elem}\n内容：${desc}`)
+}
+
+/**
  * @param {DocumentFragment} fragment
  * @param {HTMLDivElement} createDatePicker
  */
@@ -53,15 +61,20 @@ export function addLabel (fragment, text) {
  * @param {DocumentFragment} fragment
  * @param {HTMLDivElement} createDatePicker
  */
-export function addNameTextBox (fragment, placeHolder="名称を入力…", option={
-    canEdit: true,
-    default: "",
-}) {
+export function addNameTextBox (fragment, options={}) {
+    options = {
+        placeHolder: "名称を入力…",
+        canEdit: true,
+        default: "",
+        description: "",
+        ...options
+    }
 
     const elementContent = `
     <div class="create-name create-element">
-        <h2>カウントダウンの名称</h2>
+        <h2>名前</h2>
         <div class="create-name-text-box">
+            <p class="create-elem-desc"></p>
             <input type="text" placeholder="名称を入力…" class="create-name-text">
             <span class="create-name-text-border"></span>
         </div>
@@ -74,9 +87,12 @@ export function addNameTextBox (fragment, placeHolder="名称を入力…", opti
 
     const input = div.querySelector(".create-name-text")
 
+    // 説明の設定(共通)
+    setElemDesc(div, options.description);
+
     // オプションの適用
-    if (!option.canEdit) {
-        if (option.default) {
+    if (!options.canEdit) {
+        if (options.default) {
             input.disabled = true
         } else {
             console.warn("テキストボックスを空にしたまま、無効にするってwww。面白いですね。")
@@ -84,12 +100,12 @@ export function addNameTextBox (fragment, placeHolder="名称を入力…", opti
         }
     }
 
-    if (option.default) {
-        input.value = option.default;
+    if (options.default) {
+        input.value = options.default;
     }
 
-    if (placeHolder) {
-        input.placeholder = placeHolder;
+    if (options.placeHolder) {
+        input.placeholder = options.placeHolder;
     }
 
 
@@ -104,23 +120,29 @@ export function addNameTextBox (fragment, placeHolder="名称を入力…", opti
  * @param {DocumentFragment} fragment
  * @param {HTMLDivElement} createDatePicker
  */
-export function addDateOption (fragment, option={
-    canEdit: true,
-    default: {
-        year: -1,
-        mon: 0,
-        day: 0,
-        hour: 0,
-        min: 0
+export function addDateOption (fragment, options={}) {
+    options = {
+        canEdit: true,
+        default: {
+            year: -1,
+            mon: 0,
+            day: 0,
+            hour: 0,
+            min: 0
+        },
+        description: "",
+        ...options
     }
-}) {
+    console.log(options.description);
+
     const elementContent = `
     <div class="create-date create-element" id="create-date">
-        <h2>終了の日時</h2>
+        <h2>終了日時</h2>
         <div class="create-date-container">
-            <span>SELECT DATE AND TIME</span>
+            <p class="create-elem-desc"></p>
+            <span>日時を選択</span>
             <div class="create-date-box">
-                <input type="text" class="create-date-input" placeholder="yyyy/mm//dd hh:mm">
+                <input type="text" class="create-date-input" placeholder="時間と日時を選択してください">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-calendar-week"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12" /><path d="M16 3v4" /><path d="M8 3v4" /><path d="M4 11h16" /><path d="M7 14h.013" /><path d="M10.01 14h.005" /><path d="M13.01 14h.005" /><path d="M16.015 14h.005" /><path d="M13.015 17h.005" /><path d="M7.01 17h.005" /><path d="M10.01 17h.005" /></svg>
                 <span class="create-date-border"></span>
             </div>
@@ -136,6 +158,9 @@ export function addDateOption (fragment, option={
     const input = div.querySelector(".create-date-input");
     const createDateBox = div.querySelector(".create-date-box");
 
+    // 説明の設定(共通)
+    setElemDesc(div, options.description);
+
     // カレンダー機能の設定
     const fp = flatpickr(input, {
         locale: "ja",
@@ -147,10 +172,9 @@ export function addDateOption (fragment, option={
         fp.open();
     })
 
-    console.log(`${option.default.year}-${option.default.mon}-${option.default.day} ${option.default.hour}:${option.default.min}`)
     // オプションの適用
-    if (option.default.year !== -1) {
-        fp.setDate(`${option.default.year}-${option.default.mon}-${option.default.day} ${option.default.hour}:${option.default.min}`);
+    if (options.default.year !== -1) {
+        fp.setDate(`${options.default.year}-${options.default.mon}-${options.default.day} ${options.default.hour}:${options.default.min}`);
         console.log("あいうえお")
     }
 
@@ -165,20 +189,25 @@ export function addDateOption (fragment, option={
  * @param {DocumentFragment} fragment
  * @param {HTMLDivElement} createDatePicker
  */
-export function addUnitOption (fragment, option={
-    canEdit: true,
-    yrs: true,
-    mth: true,
-    wks: true,
-    day: true,
-    hrs: true,
-    min: true,
-    sec: true,
-    default: "",
-}) {
+export function addUnitOption (fragment, options={}) {
+    options = {
+        canEdit: true,
+        yrs: true,
+        mth: true,
+        wks: true,
+        day: true,
+        hrs: true,
+        min: true,
+        sec: true,
+        default: "",
+        description: "",
+        ...options
+    }
+
     const elementContent = `
     <div class="create-unit create-element">
-        <h2>表示する単位</h2>
+        <h2>表示単位</h2>
+        <p class="create-elem-desc"></p>
         <div class="create-unit-selector">
             <button class="create-unit-button yrs">年</button>
             <button class="create-unit-button mth">月</button>
@@ -204,11 +233,13 @@ export function addUnitOption (fragment, option={
     div.innerHTML = elementContent;
     fragment.appendChild(div);
 
+    // 説明の設定(共通)
+    setElemDesc(div, options.description);
+
     let currentUnit = "";
 
     // 要素の取得
     const unitsBtn = div.querySelectorAll(".create-unit-button");
-    console.log(unitsBtn);
     unitsBtn.forEach((btn) => {
 
         const unitType = btn.classList[1];
@@ -223,25 +254,25 @@ export function addUnitOption (fragment, option={
             btn.classList.add("selected");
         })
 
-        if (unitType === "yrs" && !option.yrs) {
+        if (unitType === "yrs" && !options.yrs) {
             btn.disabled = true;
         }
-        if (unitType === "mth" && !option.mth) {
+        if (unitType === "mth" && !options.mth) {
             btn.disabled = true;
         }
-        if (unitType === "wks" && !option.wks) {
+        if (unitType === "wks" && !options.wks) {
             btn.disabled = true;
         }
-        if (unitType === "day" && !option.day) {
+        if (unitType === "day" && !options.day) {
             btn.disabled = true;
         }
-        if (unitType === "hrs" && !option.hrs) {
+        if (unitType === "hrs" && !options.hrs) {
             btn.disabled = true;
         }
-        if (unitType === "min" && !option.min) {
+        if (unitType === "min" && !options.min) {
             btn.disabled = true;
         }
-        if (unitType === "sec" && !option.sec) {
+        if (unitType === "sec" && !options.sec) {
             btn.disabled = true;
         }
 
@@ -265,7 +296,7 @@ export function addSubmitButton (fragment) {
         <div class="create-submit-box">
             <button class="create-submit-button">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-clock-plus"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20.984 12.535a9 9 0 1 0 -8.468 8.45" /><path d="M16 19h6" /><path d="M19 16v6" /><path d="M12 7v5l3 3" /></svg>
-                <span>新規作成</span>
+                <span>作成する</span>
             </button>
         </div>
     </div>

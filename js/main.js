@@ -131,17 +131,16 @@ function createDefaultDateModal() {
     // インプットの一覧
     const fields = [];
 
-    fields.push(ui.addLabel(fragment, "名称や日時を設定して、カウントダウンを作成しましょう。"));
-    fields.push(ui.addNameTextBox(fragment));
-    fields.push(ui.addDateOption(fragment));
-    fields.push(ui.addUnitOption(fragment));
+    fields.push(ui.addLabel(fragment, "名前と日時を設定して、カウントダウンを作成します"));
+    fields.push(ui.addNameTextBox(fragment, {description: "カウントダウンの名称を決めます。例：テストまで、卒業まで、80歳になるまで"}));
+    fields.push(ui.addDateOption(fragment, {description: "考えたテーマの日時を指定"}));
+    fields.push(ui.addUnitOption(fragment, {description: "実際にカウントダウンが表示されるときに使用される単位になります。"}));
     fields.push(ui.addSubmitButton(fragment));
 
     createDatePicker.appendChild(fragment);
 
     /** @type {HTMLButtonElement} */
     const submitButton = fields.find(element => element.type === "submit")?.btnElem;
-    console.log(submitButton)
 
     submitButton.addEventListener("click", () => {
         console.log("新規作成");

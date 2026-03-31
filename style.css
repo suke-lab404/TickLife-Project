@@ -9,18 +9,22 @@ body{
 }
 
 :root {
-    /* ベース */
-    --color-base: #ffffff;
-    /* 細い線などに用いる */
+    /* 背景 */
+    --color-bg: #ffffff;
+
+    /* 枠線 */
     --color-border: #e3e3e3;
-    /* 細い線のホバー時など */
     --color-border-hover: #454545;
-    /* アイコンのホバー時など */
-    --color-sub: #f7f7f7;
-    /* 反対色 */
-    --color-complementary: #000000;
-    /* 淡い黒 */
-    --color-faint-complementary: #1e1e1e;
+
+    /* サブ背景（ホバーなど） */
+    --color-bg-sub: #f7f7f7;
+
+    /* メインテキスト */
+    --color-text: #000000;
+
+    /* 薄いテキスト */
+    --color-text-muted: #1e1e1e;
+    --color-text-subtle: #3e3e3e;
 }
 
 /* メイン */
@@ -59,7 +63,7 @@ body{
     border-radius: 10000px;
 }
 .detail-dropdown-button:hover{
-    background-color: var(--color-sub);
+    background-color: var(--color-bg-sub);
 }
 /* フッダー仮 */
 .footer-kari{
@@ -86,16 +90,16 @@ body{
     border-radius: 100px;
 }
 .dropdown-button.hover {
-    background-color: var(--color-sub);
+    background-color: var(--color-bg-sub);
 }
 .dropdown-button-text {
     margin-right: 5px;
-    color: var(--color-faint-complementary);
+    color: var(--color-faint-muted);
 }
 .dropdown-icon{
     position: relative;
     top: 0px;
-    color: var(--color-faint-complementary);
+    color: var(--color-faint-muted);
     transition: transform 0.3s ease-in-out;
     transform-origin: center;
 }
@@ -144,7 +148,7 @@ body{
     border: 1px solid #e3e3e3;
 }
 .menu-controller-button-design:hover{
-    background-color: var(--color-sub)
+    background-color: var(--color-bg-sub)
 }
 .menu-create-button-text{
     margin-left: 8px;
@@ -227,7 +231,7 @@ body{
     margin-left: auto;
 }
 .create-close-button:hover {
-    background-color: var(--color-sub);
+    background-color: var(--color-bg-sub);
 }
 
 /* 新規作成のロード */
@@ -262,7 +266,7 @@ body{
 }
 .create-label-p {
     margin: 0;
-    color: var(--color-faint-complementary);
+    color: var(--color-faint-muted);
     font-size: 16px;
 }
 
@@ -323,8 +327,9 @@ body{
 }
 .create-date-container>span {
     color: var(--color-border-hover);
-    font-family: "Inter", sans-serif;
+    font-family: "LINE Seed JP", sans-serif;
     font-size: 14px;
+    font-weight: 100;
 }
 .create-date-box {
     width: 80%;
@@ -337,7 +342,7 @@ body{
     border: none;
     padding: 5px;
     font-size: 16px;
-    font-family: "Inter", sans-serif;
+    font-family: "Noto Sans JP", sans-serif;
     width: 100%;
 }
 .create-date-border {
@@ -375,15 +380,15 @@ body{
     transition: background-color .2s ease-in-out, color .2s ease-in-out;
 }
 .create-unit-button:hover {
-    background-color: var(--color-sub);
+    background-color: var(--color-bg-sub);
 }
 .create-unit-button.selected {
-    background-color: var(--color-complementary);
-    color: var(--color-base);
+    background-color: var(--color-text);
+    color: var(--color-bg);
 }
 .create-unit-button:disabled {
     background-color: var(--color-border);
-    color: var(--color-base);
+    color: var(--color-bg);
     pointer-events: none;
 }
 
@@ -409,8 +414,8 @@ body{
     border: 1px solid var(--color-border);
     display: flex;
     align-items: center;
-    background-color: var(--color-complementary);
-    color: var(--color-base);
+    background-color: var(--color-text);
+    color: var(--color-bg);
     cursor: pointer;
     margin-left: auto;
 }
@@ -427,6 +432,14 @@ body{
     background-color: var(--color-border);
     width: 100%;
     border-radius: 10000px;
+}
+
+/* descriptionの部分 */
+.create-elem-desc {
+    margin: 0;
+    margin-left: 2px;
+    font-size: 15px;
+    color: var(--color-text-subtle);
 }
 
 /* One div loaders */
