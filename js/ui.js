@@ -29,8 +29,11 @@ export function hideModalLoading() {
  * @param {HTMLDivElement} elem
  */
 function setElemDesc (elem, desc) {
-    elem.querySelector(".create-desc-elem");
-    console.log(`取得された要素：${elem}\n内容：${desc}`)
+    const descDiv = elem.querySelector(".create-elem-desc");
+    console.log(`取得された要素：${elem}\n内容：${desc}`);
+    console.log(descDiv)
+
+    descDiv.innerHTML = desc;
 }
 
 /**
@@ -48,9 +51,9 @@ export function addLabel (fragment, text) {
     div.innerHTML = elementContent;
     fragment.appendChild(div);
 
-    const paragrah = div.querySelector(".create-label-p");
+    const paragraph = div.querySelector(".create-label-p");
 
-    paragrah.innerHTML = text;
+    paragraph.innerHTML = text;
 
     return {
         type: "label"
@@ -73,8 +76,8 @@ export function addNameTextBox (fragment, options={}) {
     const elementContent = `
     <div class="create-name create-element">
         <h2>名前</h2>
+        <p class="create-elem-desc"></p>
         <div class="create-name-text-box">
-            <p class="create-elem-desc"></p>
             <input type="text" placeholder="名称を入力…" class="create-name-text">
             <span class="create-name-text-border"></span>
         </div>
@@ -133,14 +136,13 @@ export function addDateOption (fragment, options={}) {
         description: "",
         ...options
     }
-    console.log(options.description);
 
     const elementContent = `
     <div class="create-date create-element" id="create-date">
         <h2>終了日時</h2>
         <div class="create-date-container">
             <p class="create-elem-desc"></p>
-            <span>日時を選択</span>
+            <!-- <span>日時を選択</span> -->
             <div class="create-date-box">
                 <input type="text" class="create-date-input" placeholder="時間と日時を選択してください">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-calendar-week"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12" /><path d="M16 3v4" /><path d="M8 3v4" /><path d="M4 11h16" /><path d="M7 14h.013" /><path d="M10.01 14h.005" /><path d="M13.01 14h.005" /><path d="M16.015 14h.005" /><path d="M13.015 17h.005" /><path d="M7.01 17h.005" /><path d="M10.01 17h.005" /></svg>
@@ -164,7 +166,12 @@ export function addDateOption (fragment, options={}) {
     // カレンダー機能の設定
     const fp = flatpickr(input, {
         locale: "ja",
-        enableTime: true
+        enableTime: true,
+        onChange: function(selectedDates) {
+        const d = selectedDates[0];
+
+        const isoLocal = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}T${String(d.getHours()).padStart(2,"0")}:${String(d.getMinutes()).padStart(2,"0")}:00`;
+    }
     });
 
     // 日時選択の画面が開くようにする
@@ -175,7 +182,6 @@ export function addDateOption (fragment, options={}) {
     // オプションの適用
     if (options.default.year !== -1) {
         fp.setDate(`${options.default.year}-${options.default.mon}-${options.default.day} ${options.default.hour}:${options.default.min}`);
-        console.log("あいうえお")
     }
 
 
@@ -245,13 +251,18 @@ export function addUnitOption (fragment, options={}) {
         const unitType = btn.classList[1];
 
         btn.addEventListener("click", () => {
-            currentUnit = unitType;
 
             unitsBtn.forEach((btn2) => {
                 btn2.classList.remove("selected");
             })
 
-            btn.classList.add("selected");
+            if (currentUnit !== unitType) {
+                btn.classList.add("selected");
+                currentUnit = unitType;
+            } else {
+                currentUnit = undefined;
+            }
+
         })
 
         if (unitType === "yrs" && !options.yrs) {

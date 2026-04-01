@@ -5,6 +5,7 @@
 */
 
 import * as ui from "./ui.js";
+import * as countdown from "./countdown.js";
 
 // ハッシュの管理
 
@@ -132,8 +133,8 @@ function createDefaultDateModal() {
     const fields = [];
 
     fields.push(ui.addLabel(fragment, "名前と日時を設定して、カウントダウンを作成します"));
-    fields.push(ui.addNameTextBox(fragment, {description: "カウントダウンの名称を決めます。例：テストまで、卒業まで、80歳になるまで"}));
-    fields.push(ui.addDateOption(fragment, {description: "考えたテーマの日時を指定"}));
+    fields.push(ui.addNameTextBox(fragment, {description: "カウントダウンの名称を決めます。(例：テストまで、卒業まで、80歳になるまで)"}));
+    fields.push(ui.addDateOption(fragment, {description: "カウントダウンの終了日時を設定します。"}));
     fields.push(ui.addUnitOption(fragment, {description: "実際にカウントダウンが表示されるときに使用される単位になります。"}));
     fields.push(ui.addSubmitButton(fragment));
 
@@ -155,4 +156,18 @@ function extractDataFromFields(fields) {
     const countUnitsObject = fields.find(item => item.type === "unit");
 
     console.log(`タイトル：${countTitleObject.getValue()}\n日時：${countDatetimeObject.getValue()}\n単位：${countUnitsObject.getValue()}`);
+
+    if (countTitleObject.getValue() && countDatetimeObject.getValue() && countUnitsObject.getValue()) {
+        console.log("条件を満たしている");
+        // データの作成
+        const data = {
+            title: countTitleObject.getValue(),
+            datetime: countDatetimeObject.getValue(),
+            unit: countUnitsObject.getValue()
+        };
+
+        countdown.addCountdowns(data);
+    } else {
+        console.log("条件を満たしていない");
+    }
 }

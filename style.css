@@ -438,8 +438,11 @@ body{
 .create-elem-desc {
     margin: 0;
     margin-left: 2px;
-    font-size: 15px;
+    font-size: 14px;
     color: var(--color-text-subtle);
+}
+.create-elem-desc:empty {
+    display: none;
 }
 
 /* One div loaders */
