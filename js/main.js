@@ -159,12 +159,15 @@ function extractDataFromFields(fields) {
 
     if (countTitleObject.getValue() && countDatetimeObject.getValue() && countUnitsObject.getValue()) {
         console.log("条件を満たしている");
+
         // データの作成
         const data = {
             title: countTitleObject.getValue(),
             datetime: countDatetimeObject.getValue(),
             unit: countUnitsObject.getValue()
         };
+
+        
 
         countdown.addCountdowns(data);
     } else {

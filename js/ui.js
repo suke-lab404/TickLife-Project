@@ -140,8 +140,8 @@ export function addDateOption (fragment, options={}) {
     const elementContent = `
     <div class="create-date create-element" id="create-date">
         <h2>終了日時</h2>
+        <p class="create-elem-desc"></p>
         <div class="create-date-container">
-            <p class="create-elem-desc"></p>
             <!-- <span>日時を選択</span> -->
             <div class="create-date-box">
                 <input type="text" class="create-date-input" placeholder="時間と日時を選択してください">

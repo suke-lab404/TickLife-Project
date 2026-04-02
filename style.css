@@ -1,6 +1,7 @@
 html{
     height: 100%;
     font-family: "Noto Sans JP", sans-serif;
+    background-color: var(--color-bg);
 }
 body{
     position: relative;
@@ -25,6 +26,9 @@ body{
     /* 薄いテキスト */
     --color-text-muted: #1e1e1e;
     --color-text-subtle: #3e3e3e;
+
+    /* 反対色のホバー */
+    --color-bg-inverse-hover: #2f2f2f;
 }
 
 /* メイン */
@@ -43,7 +47,7 @@ body{
 }
 .logo {
     text-decoration: none;
-    color: black;
+    color: var(--color-text);
     font-family: "Montserrat", sans-serif;
     font-weight: 600;
     font-size: 20px;
@@ -61,6 +65,8 @@ body{
     margin-left: auto;
     margin-right: 20px;
     border-radius: 10000px;
+    background-color: var(--color-bg);
+    color: var(--color-text);
 }
 .detail-dropdown-button:hover{
     background-color: var(--color-bg-sub);
@@ -88,18 +94,19 @@ body{
     padding-left: 20px;
     padding-right: 20px;
     border-radius: 100px;
+    color: var(--color-text);
 }
 .dropdown-button.hover {
     background-color: var(--color-bg-sub);
 }
 .dropdown-button-text {
     margin-right: 5px;
-    color: var(--color-faint-muted);
+    color: var(--color-text-muted);
 }
 .dropdown-icon{
     position: relative;
     top: 0px;
-    color: var(--color-faint-muted);
+    color: var(--color-text-muted);
     transition: transform 0.3s ease-in-out;
     transform-origin: center;
 }
@@ -145,7 +152,8 @@ body{
     padding-left: 10px;
     padding-right: 10px;
     border-radius: 10000px;
-    border: 1px solid #e3e3e3;
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
 }
 .menu-controller-button-design:hover{
     background-color: var(--color-bg-sub)
@@ -166,6 +174,7 @@ body{
     font-size: 100px;
     font-family: "Montserrat", sans-serif;
     font-weight: 500;
+    color: var(--color-text);
 }
 
 /* オーバーレイ */
@@ -192,7 +201,7 @@ body{
     left: 50%;
     top: 50%;
     transform: translateX(-50%) translateY(calc(-50% - 10px));
-    background-color: white;
+    background-color: var(--color-bg);
     border: 1px solid var(--color-border);
     padding: 30px;
     border-radius: 24px;
@@ -220,6 +229,7 @@ body{
     font-size: 22px;
     font-weight: 600;
     margin: 0;
+    color: var(--color-text);
 }
 .create-close-button {
     all: unset;
@@ -229,6 +239,7 @@ body{
     padding: 8px;
     border-radius: 10000px;
     margin-left: auto;
+    color: var(--color-text);
 }
 .create-close-button:hover {
     background-color: var(--color-bg-sub);
@@ -251,6 +262,7 @@ body{
     font-weight: 500;
     margin-top: auto;
     margin-bottom: 10px;
+    color: var(--color-text);
 }
 .create-loading-circle {
     margin-bottom: auto;
@@ -266,7 +278,7 @@ body{
 }
 .create-label-p {
     margin: 0;
-    color: var(--color-faint-muted);
+    color: var(--color-text-muted);
     font-size: 16px;
 }
 
@@ -285,6 +297,7 @@ body{
     margin: 0;
     font-size: 18px;
     font-weight: 500;
+    color: var(--color-text);
 }
 .create-name-text-box {
     padding-top: 5px;
@@ -298,6 +311,8 @@ body{
     font-size: 16px;
     width: 100%;
     outline: none;
+    background-color: var(--color-bg);
+    color: var(--color-text);
     font-family: "Noto Sans JP", sans-serif;
 }
 .create-name-text-border {
@@ -342,6 +357,8 @@ body{
     border: none;
     padding: 5px;
     font-size: 16px;
+    background-color: var(--color-bg);
+    color: var(--color-text);
     font-family: "Noto Sans JP", sans-serif;
     width: 100%;
 }
@@ -375,6 +392,7 @@ body{
     padding-right: 12px;
     border-radius: 10000px;
     border: 1px solid var(--color-border);
+    color: var(--color-text);
     font-size: 14px;
     cursor: pointer;
     transition: background-color .2s ease-in-out, color .2s ease-in-out;
@@ -418,6 +436,9 @@ body{
     color: var(--color-bg);
     cursor: pointer;
     margin-left: auto;
+}
+.create-submit-button:hover {
+    background-color: var(--color-bg-inverse-hover);
 }
 .create-submit-button>svg {
     margin-right: 8px;
@@ -486,5 +507,115 @@ body{
 
     to {
         transform: rotate(360deg);
+    }
+}
+
+.preview-modal{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(calc(-50% - 10px));
+    background-color: white;
+    border: 1px solid var(--color-border);
+    padding: 30px;
+    border-radius: 24px;
+    width: 450px;
+    height: auto;
+
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+.preview-modal.open{
+    transform: translateX(-50%) translateY(calc(-50%));
+    pointer-events: auto;
+    opacity: 1;
+}
+.preview-msg {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+}
+.preview-count-container {
+    position: relative;
+    height: 100px;
+    width: 100%;
+}
+.preview-count-box {
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    position: absolute;
+}
+.preview-count-display {
+    font-size: 60px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    filter: drop-shadow(0 0 100px rgba(0, 0, 0, 0.1)) blur(0px);
+    /* TODO: dont forget -> 表示された瞬間ぼやけが最初あるようにする */
+}
+.preview-unit-display {
+    font-size: 20px;
+    font-weight: 700;
+    font-family: "LINE Seed JP", sans-serif;
+}
+.preview-count-info p{
+    margin: 0;
+    font-size: 14px;
+    color: var(--color-text-subtle);
+}
+.preview-btns {
+    display: flex;
+    padding-top: 20px;
+    padding-bottom: 5px;
+    gap: 10px;
+}
+.preview-btns button {
+    all: unset;
+    cursor: pointer;
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 1px solid var(--color-border);
+    border-radius: 10000px;
+    text-align: center;
+    font-size: 14px;
+}
+.add-btn {
+    background-color: var(--color-text) !important;
+    color: var(--color-bg) !important;
+}
+.add-btn:hover {
+    background-color: var(--color-bg-inverse-hover) !important;
+}
+.cancel-btn:hover {
+    background-color: var(--color-bg-sub);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* 背景 */
+        --color-bg: #000000;
+
+        /* 枠線 */
+        --color-border: #292929;
+        --color-border-hover: #bbbbbb;
+
+        /* サブ背景（ホバーなど） */
+        --color-bg-sub: #2f2f2f;
+
+        /* メインテキスト */
+        --color-text: #ffffff;
+
+        /* 薄いテキスト */
+        --color-text-muted: #ececec;
+        --color-text-subtle: #d2d2d2;
+
+        /* 反対色のホバー */
+        --color-bg-inverse-hover: #f7f7f7;
+    }
+
+    .menu-container {
+        box-shadow: none;
     }
 }
