@@ -1,3 +1,5 @@
+@charset "utf-8";
+
 html{
     height: 100%;
     font-family: "Noto Sans JP", sans-serif;
@@ -592,30 +594,35 @@ body{
     background-color: var(--color-bg-sub);
 }
 
-@media (prefers-color-scheme: dark) {
-    :root {
-        /* 背景 */
-        --color-bg: #000000;
+:root.dark-mode {
+    /* 背景 */
+    --color-bg: #000000;
 
-        /* 枠線 */
-        --color-border: #292929;
-        --color-border-hover: #bbbbbb;
+    /* 枠線 */
+    --color-border: #292929;
+    --color-border-hover: #bbbbbb;
 
-        /* サブ背景（ホバーなど） */
-        --color-bg-sub: #2f2f2f;
+    /* サブ背景（ホバーなど） */
+    --color-bg-sub: #2f2f2f;
 
-        /* メインテキスト */
-        --color-text: #ffffff;
+    /* メインテキスト */
+    --color-text: #ffffff;
 
-        /* 薄いテキスト */
-        --color-text-muted: #ececec;
-        --color-text-subtle: #d2d2d2;
+    /* 薄いテキスト */
+    --color-text-muted: #ececec;
+    --color-text-subtle: #d2d2d2;
 
-        /* 反対色のホバー */
-        --color-bg-inverse-hover: #f7f7f7;
+    /* 反対色のホバー */
+    --color-bg-inverse-hover: #f7f7f7;
     }
 
     .menu-container {
         box-shadow: none;
-    }
+}
+
+/* 0.5秒かけてじわ〜っと変える設定 */
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;
 }

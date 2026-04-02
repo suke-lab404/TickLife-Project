@@ -174,3 +174,24 @@ function extractDataFromFields(fields) {
         console.log("条件を満たしていない");
     }
 }
+
+// ダークモードのアニメーション
+const query = window.matchMedia('(prefers-color-scheme: dark)');
+
+// 初期状態の反映
+if (query.matches) {
+    document.documentElement.classList.toggle("dark-mode");
+}
+
+// osの変更を監視
+query.addEventListener("change", (e) => {
+    if (!document.startViewTransition) {
+        document.documentElement.classList.toggle("dark-mode", e.matches);
+        return;
+    }
+
+    // アニメーションの撮影
+    document.startViewTransition(() => {
+        document.documentElement.classList.toggle('dark-mode', e.matches);
+    })
+})
