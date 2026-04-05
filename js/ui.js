@@ -168,10 +168,10 @@ export function addDateOption (fragment, options={}) {
         locale: "ja",
         enableTime: true,
         onChange: function(selectedDates) {
-        const d = selectedDates[0];
+            const d = selectedDates[0];
 
-        const isoLocal = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}T${String(d.getHours()).padStart(2,"0")}:${String(d.getMinutes()).padStart(2,"0")}:00`;
-    }
+            const isoLocal = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}T${String(d.getHours()).padStart(2,"0")}:${String(d.getMinutes()).padStart(2,"0")}:00`;
+        }
     });
 
     // 日時選択の画面が開くようにする
@@ -324,4 +324,35 @@ export function addSubmitButton (fragment) {
         type: "submit",
         btnElem: submitButton
     }
+}
+
+export function updatePreviewCount (count) {
+    // 要素の取得
+    const countYrs = document.querySelector(".preview-count-box.yrs");
+    const countDay = document.querySelector(".preview-count-box.day");
+    const countHrs = document.querySelector(".preview-count-box.hrs");
+    const countMin = document.querySelector(".preview-count-box.min");
+    const countSec = document.querySelector(".preview-count-box.sec");
+
+    if (count.yrs === 0) {
+        countYrs.classList.add("unvisible");
+    }
+
+    function padZero(number) {
+        if (typeof number !== "string") {
+            number = String(number)
+        }
+        if (number.length === 1) {
+            return "0" + number
+        } else {
+            return number
+        }
+    }
+
+    countYrs.textContent = padZero(count.yrs);
+    countDay.textContent = padZero(count.day);
+    countHrs.textContent = padZero(count.hrs);
+    countMin.textContent = padZero(count.min);
+    countSec.textContent = padZero(count.sec);
+    
 }

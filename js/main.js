@@ -118,6 +118,10 @@ function closeCreateModal() {
     isOpenCreateModal = false;
 }
 
+function hideCreateModal() {
+    createModal.classList.remove("open");
+}
+
 createCloseButton.addEventListener("click", e => {
     location.hash = "";
 })
@@ -135,7 +139,7 @@ function createDefaultDateModal() {
     fields.push(ui.addLabel(fragment, "名前と日時を設定して、カウントダウンを作成します"));
     fields.push(ui.addNameTextBox(fragment, {description: "カウントダウンの名称を決めます。(例：テストまで、卒業まで、80歳になるまで)"}));
     fields.push(ui.addDateOption(fragment, {description: "カウントダウンの終了日時を設定します。"}));
-    fields.push(ui.addUnitOption(fragment, {description: "実際にカウントダウンが表示されるときに使用される単位になります。"}));
+    //fields.push(ui.addUnitOption(fragment, {description: "実際にカウントダウンが表示されるときに使用される単位になります。"}));
     fields.push(ui.addSubmitButton(fragment));
 
     createDatePicker.appendChild(fragment);
@@ -153,26 +157,53 @@ function extractDataFromFields(fields) {
     // データの取得
     const countTitleObject = fields.find(item => item.type === "title");
     const countDatetimeObject = fields.find(item => item.type === "datetime");
-    const countUnitsObject = fields.find(item => item.type === "unit");
 
-    console.log(`タイトル：${countTitleObject.getValue()}\n日時：${countDatetimeObject.getValue()}\n単位：${countUnitsObject.getValue()}`);
+    console.log(`タイトル：${countTitleObject.getValue()}\n日時：${countDatetimeObject.getValue()}`);
 
-    if (countTitleObject.getValue() && countDatetimeObject.getValue() && countUnitsObject.getValue()) {
+    if (countTitleObject.getValue() && countDatetimeObject.getValue()) {
         console.log("条件を満たしている");
 
         // データの作成
         const data = {
             title: countTitleObject.getValue(),
-            datetime: countDatetimeObject.getValue(),
-            unit: countUnitsObject.getValue()
+            datetime: countDatetimeObject.getValue()
         };
 
-        
+        hideCreateModal();
 
-        countdown.addCountdowns(data);
+        requestCountdowns(data);
     } else {
         console.log("条件を満たしていない");
     }
+}
+
+// カウントダウンの確認
+function requestCountdowns(data) {
+    console.log(data)
+    console.log("提出を承りました")
+
+    // 要素の取得
+    const previewModal = document.getElementById("preview-modal");
+    const previewTitle = document.querySelector(".preview-title");
+    const previewDatetime = document.querySelector(".preview-datetime");
+
+    previewTitle.textContent = `名前：${data.title}`;
+    previewDatetime.textContent = `終了日時：${data.datetime[0].getFullYear()}年${data.datetime[0].getMonth() + 1}月${data.datetime[0].getDate()}日${data.datetime[0].getHours()}時${data.datetime[0].getMinutes()}分`
+
+    setTimeout(() => {
+        // 初期化
+        let count = countdown.calcRemainingTime(data.datetime[0]);
+        ui.updatePreviewCount(count);
+
+        previewModal.classList.add("open");
+
+        console.log("こんにちは")
+        stop = countdown.startAccurateTimer(() => {
+            count = countdown.calcRemainingTime(data.datetime[0]);
+            console.log(count);
+            ui.updatePreviewCount(count);
+        })
+    }, 500)
 }
 
 // ダークモードのアニメーション

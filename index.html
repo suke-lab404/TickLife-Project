@@ -20,6 +20,7 @@
         <link rel="stylesheet" href="./style.css" />
 
         <!-- JavaScript -->
+        <script src="https://cdn.jsdelivr.net/npm/countdown@2.6.0/countdown.min.js"></script>
         <script type="module" src="js/main.js" defer></script>
 
         <!-- Font -->
@@ -46,7 +47,10 @@
     <body>
         <div class="main-container">
             <header class="header">
-                <a href="#" class="logo">TickLife</a>
+                <a href="#" class="logo">
+                    <span class="logo-text">TickLife</span>
+                    <span class="logo-sub">Alpha</span>
+                </a>
                 <div class="dropdown" id="dropdown">
                     <button class="dropdown-button" id="dropdown-button">
                         <span class="dropdown-button-text">テストテキスト</span>
@@ -90,15 +94,29 @@
         </div>
         <div class="preview-modal" id="preview-modal">
             <h1 class="preview-msg">カウントダウンができました！</h1>
-            <div class="preview-count-container">
-                <div class="preview-count-box">
-                    <span class="preview-count-display">12345</span>
-                    <span class="preview-unit-display">日</span>
+            <div class="preview-count-display">
+                <div class="preview-count-center">
+                    <div class="preview-count-box yrs">
+                        11
+                    </div>
+                    <div class="preview-count-box day">
+                        11
+                    </div>
+                    <div class="preview-count-box hrs">
+                        11
+                    </div>
+                    <div class="preview-count-box min">
+                        11
+                    </div>
+                    <div class="preview-count-box sec">
+                        11
+                    </div>
                 </div>
             </div>
+            
             <div class="preview-count-info">
-                <p>名前：このサイトが完成するまで</p>
-                <p>終了日時：2027年5月31日 0時0分</p>
+                <p class="preview-title">名前：このサイトが完成するまで</p>
+                <p class="preview-datetime">終了日時：2027年5月31日 0時0分</p>
             </div>
             <div class="preview-btns">
                 <button class="cancel-btn">キャンセル</button>
