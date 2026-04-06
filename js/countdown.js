@@ -67,7 +67,7 @@ export function startAccurateTimer(callback) {
         }, delay);
     }
 
-    const stop = false;
+    let stop = false;
     tick();
 
     return () => {

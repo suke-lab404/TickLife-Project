@@ -114,7 +114,10 @@ function closeCreateModal() {
 
     overlay.classList.remove("visible");
     createModal.classList.remove("open");
+    const previewModal = document.getElementById("preview-modal");
+    previewModal.classList.remove("open");
 
+    location.hash = "";
     isOpenCreateModal = false;
 }
 
@@ -186,6 +189,10 @@ function requestCountdowns(data) {
     const previewModal = document.getElementById("preview-modal");
     const previewTitle = document.querySelector(".preview-title");
     const previewDatetime = document.querySelector(".preview-datetime");
+    // ボタン
+    const previewButtons = document.querySelector(".preview-btns");
+    const previewAddButton = previewButtons.querySelector(".add-btn");
+    const previewCancelButton = previewButtons.querySelector(".cancel-btn");
 
     previewTitle.textContent = `名前：${data.title}`;
     previewDatetime.textContent = `終了日時：${data.datetime[0].getFullYear()}年${data.datetime[0].getMonth() + 1}月${data.datetime[0].getDate()}日${data.datetime[0].getHours()}時${data.datetime[0].getMinutes()}分`
@@ -203,7 +210,19 @@ function requestCountdowns(data) {
             console.log(count);
             ui.updatePreviewCount(count);
         })
+
+        previewAddButton.addEventListener("click", (e) => {
+            stop();
+            closeCreateModal();
+            addCountdown(data);
+        })
     }, 500)
+}
+
+// カウントダウンを追加と保存
+function addCountdown(data) {
+    console.log(data);
+    
 }
 
 // ダークモードのアニメーション
