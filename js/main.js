@@ -1,3 +1,24 @@
+// 警告メッセージ
+(function() {
+    const title = "警告";
+    const header = "「この画面になにか貼り付けろ」はすべて詐欺です！！"
+    const msg = "もし貼り付けると、悪意のある第三者によって、個人情報が騙し取られる可能性があります。\n右上の[x]ボタンを押して閉じるか、ブラウザを終了させてください。";
+
+    console.log(
+        `%c${title}`,
+        "color: red; font-size: 40px; font-weight: 800; background-color: yellow; padding: 5px; padding-left: 20px; padding-right: 20px; -webkit-text-stroke: 1px black;"
+    )
+    console.log(
+        `%c${header}`,
+        "color: red; font-size: 16px; font-weight: bold;"
+    )
+    console.log(
+        `%c${msg}`,
+        "font-size: 14px;"
+    )
+    console.log("\n\n")
+})();
+
 /*
 没コードだらけのクソコードとなっています。
 ちゃんとしたプログラマーさんはいらないコードをしっかり消しましょうね。
@@ -212,10 +233,11 @@ function requestCountdowns(data) {
         })
 
         previewAddButton.addEventListener("click", (e) => {
+            // TODO: プレビュー画面表示中に、画面を閉じても裏でカウントダウンがこっそり動作している
             stop();
             closeCreateModal();
             addCountdown(data);
-        })
+        }, {once: true})
     }, 500)
 }
 

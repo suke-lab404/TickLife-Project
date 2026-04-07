@@ -1,6 +1,6 @@
 const countdowns = []
 
-export function countdownPreview(data) {
+export function addCountdown(data) {
     
 }
 
