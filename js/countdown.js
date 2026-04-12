@@ -1,7 +1,26 @@
 const countdowns = []
 
 export function addCountdown(data) {
-    
+    // データの作成
+    const id = generateRandomID(5);
+    const title = data.title;
+    console.log(data.datetime)
+    const ISOTargetDatetime = data.datetime.toISOString();
+    // 現在の日時の保存
+    const ISONowDatetime = new Date().toISOString();
+
+    const formattdData = {
+        id: id,
+        title: title,
+        targetDatetime: ISOTargetDatetime,
+        lastAccessTime: ISONowDatetime
+    };
+
+    saveData();
+}
+
+export function saveData() {
+
 }
 
 function generateRandomID(length) {

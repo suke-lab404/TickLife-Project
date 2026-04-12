@@ -1,6 +1,6 @@
 // 警告メッセージ
 (function() {
-    const title = "警告";
+    const title = "警告 Warning";
     const header = "「この画面になにか貼り付けろ」はすべて詐欺です！！"
     const msg = "もし貼り付けると、悪意のある第三者によって、個人情報が騙し取られる可能性があります。\n右上の[x]ボタンを押して閉じるか、ブラウザを終了させてください。";
 
@@ -178,6 +178,7 @@ function createDefaultDateModal() {
 }
 
 function extractDataFromFields(fields) {
+    // fieldsからタイトル、日時などのデータを抽出します。
     // データの取得
     const countTitleObject = fields.find(item => item.type === "title");
     const countDatetimeObject = fields.find(item => item.type === "datetime");
@@ -187,6 +188,9 @@ function extractDataFromFields(fields) {
     if (countTitleObject.getValue() && countDatetimeObject.getValue()) {
         console.log("条件を満たしている");
 
+        console.log("これがfp.selectedDates[0]")
+        console.log(countDatetimeObject.getValue());
+        console.log("")
         // データの作成
         const data = {
             title: countTitleObject.getValue(),
@@ -216,18 +220,18 @@ function requestCountdowns(data) {
     const previewCancelButton = previewButtons.querySelector(".cancel-btn");
 
     previewTitle.textContent = `名前：${data.title}`;
-    previewDatetime.textContent = `終了日時：${data.datetime[0].getFullYear()}年${data.datetime[0].getMonth() + 1}月${data.datetime[0].getDate()}日${data.datetime[0].getHours()}時${data.datetime[0].getMinutes()}分`
+    previewDatetime.textContent = `終了日時：${data.datetime.getFullYear()}年${data.datetime.getMonth() + 1}月${data.datetime.getDate()}日${data.datetime.getHours()}時${data.datetime.getMinutes()}分`
 
     setTimeout(() => {
         // 初期化
-        let count = countdown.calcRemainingTime(data.datetime[0]);
+        let count = countdown.calcRemainingTime(data.datetime);
         ui.updatePreviewCount(count);
 
         previewModal.classList.add("open");
 
         console.log("こんにちは")
         stop = countdown.startAccurateTimer(() => {
-            count = countdown.calcRemainingTime(data.datetime[0]);
+            count = countdown.calcRemainingTime(data.datetime);
             console.log(count);
             ui.updatePreviewCount(count);
         })
@@ -236,15 +240,16 @@ function requestCountdowns(data) {
             // TODO: プレビュー画面表示中に、画面を閉じても裏でカウントダウンがこっそり動作している
             stop();
             closeCreateModal();
-            addCountdown(data);
+            countdown.addCountdown(data);
         }, {once: true})
     }, 500)
 }
 
 // カウントダウンを追加と保存
+// TODO: この関数いらない消せ
 function addCountdown(data) {
     console.log(data);
-    
+    countdown.addCountdown(data);
 }
 
 // ダークモードのアニメーション

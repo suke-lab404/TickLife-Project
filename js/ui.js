@@ -187,7 +187,7 @@ export function addDateOption (fragment, options={}) {
 
     return {
         type: "datetime",
-        getValue: () => fp.selectedDates
+        getValue: () => fp.selectedDates[0]
     }
 }
 
