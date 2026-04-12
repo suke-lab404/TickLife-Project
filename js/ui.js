@@ -30,9 +30,6 @@ export function hideModalLoading() {
  */
 function setElemDesc (elem, desc) {
     const descDiv = elem.querySelector(".create-elem-desc");
-    console.log(`取得された要素：${elem}\n内容：${desc}`);
-    console.log(descDiv)
-
     descDiv.innerHTML = desc;
 }
 
@@ -57,7 +54,7 @@ export function addLabel (fragment, text) {
 
     return {
         type: "label"
-    }
+      }
 }
 
 /**
@@ -71,7 +68,7 @@ export function addNameTextBox (fragment, options={}) {
         default: "",
         description: "",
         ...options
-    }
+      }
 
     const elementContent = `
     <div class="create-name create-element">
@@ -96,10 +93,9 @@ export function addNameTextBox (fragment, options={}) {
     // オプションの適用
     if (!options.canEdit) {
         if (options.default) {
-            input.disabled = true
+            input.disabled = true;
         } else {
-            console.warn("テキストボックスを空にしたまま、無効にするってwww。面白いですね。")
-            console.error("テキストボックスを無効にする動作をキャンセルしました。")
+            // 値がない状態で無効化することはできないため、処理をスキップします
         }
     }
 
@@ -135,7 +131,7 @@ export function addDateOption (fragment, options={}) {
         },
         description: "",
         ...options
-    }
+      }
 
     const elementContent = `
     <div class="create-date create-element" id="create-date">
@@ -208,7 +204,7 @@ export function addUnitOption (fragment, options={}) {
         default: "",
         description: "",
         ...options
-    }
+      }
 
     const elementContent = `
     <div class="create-unit create-element">
@@ -326,33 +322,106 @@ export function addSubmitButton (fragment) {
     }
 }
 
-export function updatePreviewCount (count) {
-    // 要素の取得
-    const countYrs = document.querySelector(".preview-count-box.yrs");
-    const countDay = document.querySelector(".preview-count-box.day");
-    const countHrs = document.querySelector(".preview-count-box.hrs");
-    const countMin = document.querySelector(".preview-count-box.min");
-    const countSec = document.querySelector(".preview-count-box.sec");
+/**
+ * カウントダウンの表示（年・日・時・分・秒）を更新します。
+ * プレビュー画面とメイン画面の両方で共通して使用します。
+ * @param {Object} count - 残り時間のオブジェクト（yrs, day, hrs, min, sec）
+ * @param {HTMLElement} parent - 更新対象の親要素（document または特定のモーダル要素など）
+ */
+export function updateCountDisplay(count, parent = document) {
+    // 指定された親要素の中から、各数値を入れるためのボックスを探します。
+    const countYrs = parent.querySelector(".preview-count-box.yrs");
+    const countDay = parent.querySelector(".preview-count-box.day");
+    const countHrs = parent.querySelector(".preview-count-box.hrs");
+    const countMin = parent.querySelector(".preview-count-box.min");
+    const countSec = parent.querySelector(".preview-count-box.sec");
 
-    if (count.yrs === 0) {
-        countYrs.classList.add("unvisible");
-    }
-
+    // 1桁の数字の頭に「0」をつけて2桁にする補助関数です（例：5 -> 05）。
     function padZero(number) {
         if (typeof number !== "string") {
-            number = String(number)
+            number = String(number);
         }
-        if (number.length === 1) {
-            return "0" + number
-        } else {
-            return number
-        }
+        return number.length === 1 ? "0" + number : number;
     }
 
-    countYrs.textContent = padZero(count.yrs);
-    countDay.textContent = padZero(count.day);
-    countHrs.textContent = padZero(count.hrs);
-    countMin.textContent = padZero(count.min);
-    countSec.textContent = padZero(count.sec);
+    // 各要素が存在する場合のみ、数値を反映させます。
+    if (countYrs) {
+        countYrs.textContent = padZero(count.yrs);
+        // 「年」が0の場合は、デザインをスッキリさせるために非表示にします。
+        if (count.yrs === 0) {
+            countYrs.classList.add("unvisible");
+        } else {
+            countYrs.classList.remove("unvisible");
+        }
+    }
     
+    if (countDay) countDay.textContent = padZero(count.day);
+    if (countHrs) countHrs.textContent = padZero(count.hrs);
+    if (countMin) countMin.textContent = padZero(count.min);
+    if (countSec) countSec.textContent = padZero(count.sec);
+}
+
+/**
+ * プレビューモーダル内のカウント表示を更新します（既存コードとの互換用）。
+ * @param {Object} count - 残り時間のオブジェクト
+ */
+export function updatePreviewCount (count) {
+    const previewModal = document.getElementById("preview-modal");
+    updateCountDisplay(count, previewModal);
+}
+
+/**
+ * メニュー内にカウントダウンのリストを描画します。
+ * @param {HTMLElement} container - リストを入れる器（menu-list）
+ * @param {Array} list - 保存されているデータの配列
+ * @param {string} currentId - 現在選択中のID（スタイル適用のために使用）
+ * @param {Function} onSelect - アイテムがクリックされた時のコールバック
+ * @param {Function} onDelete - 削除ボタンがクリックされた時のコールバック
+ */
+export function renderCountdownList(container, list, currentId, onSelect, onDelete) {
+    // 一旦中身を空にします
+    container.innerHTML = "";
+
+    if (list.length === 0) {
+        container.innerHTML = '<p style="font-size:14px; color:var(--color-text-subtle); padding:10px;">保存された項目がありません</p>';
+        return;
+    }
+
+    // データの数だけループして、要素を作成します
+    list.forEach(item => {
+        const itemBtn = document.createElement("button");
+        itemBtn.className = "menu-item";
+        if (item.id === currentId) {
+            itemBtn.classList.add("selected");
+        }
+
+        // タイトル部分
+        const titleSpan = document.createElement("span");
+        titleSpan.className = "menu-item-title";
+        titleSpan.textContent = item.title;
+        itemBtn.appendChild(titleSpan);
+
+        // 削除ボタン
+        const deleteBtn = document.createElement("button");
+        deleteBtn.className = "menu-item-delete";
+        deleteBtn.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-x"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg>
+        `;
+        deleteBtn.title = "削除";
+        
+        // 削除ボタン自体のクリックイベント
+        deleteBtn.addEventListener("click", (e) => {
+            e.stopPropagation(); // ボタンのクリックが親のitemBtnに伝わらないようにします
+            onDelete(item.id);
+        });
+        
+        itemBtn.appendChild(deleteBtn);
+
+        // アイテム全体の選択イベントの設定
+        itemBtn.addEventListener("click", () => {
+            onSelect(item.id);
+        });
+
+        container.appendChild(itemBtn);
+    });
 }

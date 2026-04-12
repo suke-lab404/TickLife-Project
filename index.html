@@ -45,6 +45,25 @@
         </script> -->
     </head>
     <body>
+        <div class="count-container">
+            <!-- プレビュー画面と同じスタイルで表示するための構造です。 -->
+            <!-- 各要素の数値はJavaScriptから更新されます。 -->
+            <div class="main-count-display">
+                <div class="preview-count-center">
+                    <div class="preview-count-box yrs">00</div>
+                    <div class="preview-count-box day">00</div>
+                    <div class="preview-count-box hrs">00</div>
+                    <div class="preview-count-box min">00</div>
+                    <div class="preview-count-box sec">00</div>
+                </div>
+            </div>
+
+            <!-- データがない場合に表示するメッセージエリアです -->
+            <div class="no-data-message" id="no-data-message">
+                <p>カウントダウンがありません。<br>メニューから作成してください。</p>
+            </div>
+        </div>
+
         <div class="main-container">
             <header class="header">
                 <a href="#" class="logo">
@@ -63,18 +82,17 @@
                                 <span class="menu-create-button-text">新規作成</span>
                             </button>
                         </div>
+
+                        <!-- カウントダウンのリストが表示されるエリアです。ボタンの下に表示されるように移動しました。 -->
+                        <div class="menu-list" id="menu-list">
+                            <!-- ここにアイテムが追加されます -->
+                        </div>
                     </div>
                 </div>
                 <button class="detail-dropdown-button">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-dots"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M11 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M18 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /></svg>
                 </button>
             </header>
-        </div>
-        <div class="count-container">
-            <span class="count-display">67439</span>
-        </div>
-        <div class="footer-kari">
-            <a href="./privacy/">プライバシーポリシー</a>
         </div>
         <div class="overlay" id="overlay"></div>
         <div class="create-modal" id="create-modal">
